@@ -38,7 +38,7 @@ function appendPageLinks(list){
    containDiv.className = 'pagination';
 
    // i have to get all .page items
-   let pages = document.querySelectorAll('.page');
+   let pages = document.querySelector('.page');
    //append 'div' to pages
    pages.appendChild(containDiv);
    
@@ -64,7 +64,7 @@ function appendPageLinks(list){
       //making the href 
       a.href = '#';
       //making the page numbers for next page items
-      a.textContent = i+1;
+      a.textContent = num+1;
       
       if(num === 0){
          a.className = 'active';
@@ -85,7 +85,7 @@ function appendPageLinks(list){
 
 };
 
-showpage(Student, 2);
+showpage(Student, 1);
 appendPageLinks(Student);
 
 
