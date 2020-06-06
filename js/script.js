@@ -6,23 +6,22 @@ FSJS project 2 - List Filter and Pagination
 // Study guide for this project - https://drive.google.com/file/d/1OD1diUsTMdpfMDv677TfL1xO2CEkykSz/view?usp=sharing
 
 const Student = document.querySelectorAll('.student-list li');
-console.log(Student);
+//console.log(Student);
 //maximum number list per page
 const max_number_of_pages = 10;
 
 //making the function that hides but the 10 items needed
-function showpage(list, page){
+function showPage(list, page){
    //start index
    let startIndex = (page * max_number_of_pages) - max_number_of_pages;
    //end index
    let endIndex = page * max_number_of_pages;
    for (let i = 0; i<list.length; i++){
       //checking if the items are within accepted bounds and display them 
-      if(i > startIndex && i<= endIndex){
-         console.log(list[i].style.display = 'block');
+      if(i >= startIndex && i < endIndex){
+         list[i].style.display = 'block';
       }else {
-         console.log(
-         list[i].style.display = 'none'); //else don't display em
+         list[i].style.display = 'none'; //else don't display em
       }
    }
 }
@@ -47,6 +46,9 @@ function appendPageLinks(list){
    //and you can use a loop that iterates that many times to 
    //create the correct number of LI elements.
    const maximum = Math.ceil(list.length/max_number_of_pages);
+
+   let ul = document.createElement('ul');
+   containDiv.appendChild(ul);
    /**
     * i have to create a 'ul','li', and 'a' tag
     * the 'li' is in the 'ul' and the 'a' is in the 'li'
@@ -54,12 +56,11 @@ function appendPageLinks(list){
     */
    //creating elements
    for(var num =0; num<maximum; num++){
-      let ul = document.createElement('ul');
       //creating the 'li' tag and appending the 'li' to the ul
       let li = document.createElement('li');
-      ul.appendChild(li);
       //creating the 'a' tag and appending it to the 'li' tag
       let a = document.createElement('a');
+      ul.appendChild(li);
       li.appendChild(a);
       //making the href 
       a.href = '#';
@@ -72,8 +73,8 @@ function appendPageLinks(list){
       //when any anchor tag is clicked
       a.addEventListener('click', (event) => {
          let links = document.querySelectorAll('a');
-         for (let i=0; i<links.length;i++){
-            links[i].className = '';
+         for (num=0; num<links.length;num++){
+            links[num].className = '';
          }
 
          event.target.className = 'active';
@@ -85,7 +86,7 @@ function appendPageLinks(list){
 
 };
 
-showpage(Student, 1);
+showPage(Student, 1);
 appendPageLinks(Student);
 
 
