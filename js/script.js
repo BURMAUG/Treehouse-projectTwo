@@ -6,7 +6,7 @@ FSJS project 2 - List Filter and Pagination
 // Study guide for this project - https://drive.google.com/file/d/1OD1diUsTMdpfMDv677TfL1xO2CEkykSz/view?usp=sharing
 
 const Student = document.querySelectorAll('.student-list li');
-//console.log(Student);
+console.log(Student);
 //maximum number list per page
 const max_number_of_pages = 10;
 

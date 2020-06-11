@@ -1,43 +1,69 @@
-//get the div to add all newly created divs
-let divs = document.querySelector('.page-header')
-console.log(divs);
-//create a div
-let searchDiv = document.createElement('div');
+//get the parent of the h2 tag
+const parent = document.querySelector('h2').parentNode;
+console.log(parent);//printing the parent to the console
+
+
+
+//create a div for search
+const searchDiv = document.createElement('div');
 searchDiv.className = 'student-search';
-//lets create an input element
-let inputElement = document.createElement('input');
-inputElement.placeholder = 'Search for students...';
+
+//create input
+const input = document.createElement('input');
+input.placeholder = 'Search';
 //create a button
-let searchButton = document.createElement('button');
-searchButton.innerHTML = 'search';
+const button = document.createElement('button');
+button.innerHTML = 'Submit';
+//appending
+searchDiv.appendChild(input);
+searchDiv.appendChild(button);
+parent.appendChild(searchDiv);
+
 
 /**
- * i need to append the 'searchDiv' to the queried divs
- * in the searchDiv there should be an input and button appended to 'searchDiv'
- **/
- divs.appendChild(searchDiv);
- searchDiv.appendChild(inputElement);
- searchDiv.appendChild(searchButton);
-//printing all the h3 elements
- const hElements = document.querySelectorAll('h3');
+ * THE SEARCHING PART 
+ * 
+ * What needs to be searched for? <h3> content/text
+ * Where to search for it?   buried in a <div class = joined-details> 's child called <h3>
+ *  
+ * 
+***/
 
- /**
-  * add eventListerner to when button is clicked
-  */
-  
-  searchButton.addEventListener('click', () => {
-      for (let i=0; i<hElements.length;i++){
-          //console.log(hElements[i].textContent); //this gives back the text content and thats what i need
-          if(hElements[i].textContent === inputElement.value){
-            hElements[i].style.display = 'block';
-          }else {
-                let details = document.querySelectorAll('.student-details')
-                details[i].style.display = 'none';
-                let joined = document.querySelectorAll('.joined-details')
-                joined[i].style.display = 'none';
-   }
-      }
-  });
+//lets get the collection of h3 content 
+const hThree = document.getElementsByTagName('h3');
+// console.log(hThree);
+let i =0;
+const list = document.getElementsByClassName('student-item')
+function searching(searchInput, names){
+    for (i; i<names.length; i++){
+        names[i].className = '';
+        if (searchInput.value.length !== 0 && searchInput.value.toLowerCase().includes(names[i].textContent.toLowerCase())){
+            names[i].className = 'match';
+            names[i].style.display = 'block';
+            list[i].style.display = 'block';
+
+        }else{
+            names[i].style.display = 'none';
+            list[i].style.display = 'none'
+
+        }
+    }
+
+}
+
+
+
+
+
+
+
+button.addEventListener('click', (e) =>{
+    searching(input, hThree);
+});
+
+input.addEventListener('keyup', ()=>{
+})
+
 
 
 
