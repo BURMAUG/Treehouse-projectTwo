@@ -1,6 +1,7 @@
 /******************************************
 Treehouse Techdegree:
 FSJS project 2 - List Filter and Pagination
+NAME: Burmau Garba.
 ******************************************/
    
 // Study guide for this project - https://drive.google.com/file/d/1OD1diUsTMdpfMDv677TfL1xO2CEkykSz/view?usp=sharing
@@ -30,7 +31,6 @@ function showPage(list, page){
 
 //Takes actual list of students
 function appendPageLinks(list){
-
    //creating a div for pagination dynamically
    let containDiv = document.createElement('div');
    //give it a class of 'pagination'
@@ -66,7 +66,6 @@ function appendPageLinks(list){
       a.href = '#';
       //making the page numbers for next page items
       a.textContent = num+1;
-      
       if(num === 0){
          a.className = 'active';
       }
@@ -76,9 +75,7 @@ function appendPageLinks(list){
          for (num=0; num<links.length;num++){
             links[num].className = '';
          }
-
          event.target.className = 'active';
-
          showPage(list, event.target.textContent); 
       })
 

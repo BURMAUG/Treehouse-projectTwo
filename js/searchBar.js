@@ -2,8 +2,6 @@
 const parent = document.querySelector('h2').parentNode;
 console.log(parent);//printing the parent to the console
 
-
-
 //create a div for search
 const searchDiv = document.createElement('div');
 searchDiv.className = 'student-search';
@@ -31,7 +29,7 @@ parent.appendChild(searchDiv);
 
 //lets get the collection of h3 content 
 const hThree = document.getElementsByTagName('h3');
-// console.log(hThree);
+console.log(hThree);
 let i =0;
 const list = document.getElementsByClassName('student-item')
 function searching(searchInput, names){
@@ -41,31 +39,39 @@ function searching(searchInput, names){
             names[i].className = 'match';
             names[i].style.display = 'block';
             list[i].style.display = 'block';
-
         }else{
             names[i].style.display = 'none';
-            list[i].style.display = 'none'
-
+            list[i].style.display = 'none';
         }
-    }
+    };
 
 }
 
 
-
-
-
-
-
+//buttons
 button.addEventListener('click', (e) =>{
-    searching(input, hThree);
+    e.preventDefault();
+    input.value  = '';
 });
 
-input.addEventListener('keyup', ()=>{
+//input value
+input.addEventListener('keyup', (event)=>{
+    var target = event.target.value;
+    // console.log(target);
+
+    //loop throught the name and the check
+    //like to check if the target value is in any of the name 
+    //i have learn
+    for(var j =0; j<hThree.length; j++){
+        if(hThree[j].textContent.toLowerCase().includes(target.toLowerCase())){
+            hThree[j].style.display = 'block';
+            list[j].style.display = "block";
+        }else{
+            hThree[j].style.display = 'none';
+            list[j].style.display = 'none';
+        }
+    }
 })
-
-
-
 
  /**
   * add an eventListener for whenever a search is done
