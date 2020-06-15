@@ -83,8 +83,9 @@ function appendPageLinks(list){
 
 };
 
+
 showPage(Student, 1);
-//appendPageLinks(Student);
+appendPageLinks(Student);
 
 
 

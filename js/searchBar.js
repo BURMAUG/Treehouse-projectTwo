@@ -1,60 +1,58 @@
-//get the parent of the h2 tag
-const parent = document.querySelector('h2').parentNode;
-console.log(parent);//printing the parent to the console
+//SEARCH BAR
+//Get the student
+const h2 = document.querySelector("h2").parentNode;
+//search div
+const searchDiv = document.createElement("div");
+searchDiv.className = "student-search";
+h2.appendChild(searchDiv);
 
-//create a div for search
-const searchDiv = document.createElement('div');
-searchDiv.className = 'student-search';
-
-//create input
-const input = document.createElement('input');
-input.placeholder = 'Search';
+const input = document.createElement("input");
+input.placeholder = "Search";
 //create a button
-const searchButton = document.createElement('button');
-searchButton.innerHTML = 'Search';
+const searchButton = document.createElement("button");
+searchButton.innerHTML = "Search";
 //appending
 searchDiv.appendChild(input);
 searchDiv.appendChild(searchButton);
-parent.appendChild(searchDiv);
 
-
-/**
- * THE SEARCHING PART 
- * 
- * What needs to be searched for? <h3> content/text
- * Where to search for it?   buried in a <div class = joined-details> 's child called <h3>
- *  
- * 
-***/
 
 //lets get the collection of h3 content 
 const hThree = document.getElementsByTagName('h3');
-console.log(hThree);
-let i =0;
-const list = document.getElementsByClassName('student-item cf');
-function searching(searchInput, names){
-    for (i; i<names.length; i++){
-        names[i].className = '';
-        if (searchInput.value.length !== 0 && searchInput.value.toLowerCase().includes(names[i].textContent.toLowerCase())){
-            names[i].className = 'match';
-            names[i].style.display = 'block';
-            list[i].style.display = 'block';
-            student_list.push(names[i]);
-            student_list[i].style.display = 'block';
-        }else{
-            names[i].style.display = 'none';
-            list[i].style.display = 'none';
-        }
+const list = document.getElementsByClassName("student-item cf");
+var i =0;
+var student_list = [];
+
+function searching(searchInput, names) {
+  for (i; i < names.length; i++) {
+    names[i].className = "";
+    if (
+      searchInput.value.length !== 0 &&
+      searchInput.value
+        .toLowerCase()
+        .includes(names[i].textContent.toLowerCase())
+    ) {
+      names[i].className = "match";
+      names[i].style.display = "block";
+      list[i].style.display = "block";
+      student_list.push(names[i]);
+      student_list[i].style.display = "block";
+    } else {
+      names[i].style.display = "none";
+      list[i].style.display = "none";
     }
-    showPage(student_list,1);
-    appendPageLinks(student_list)
+  }
+  showPage(student_list, 1);
+  appendPageLinks(student_list);
 }
 
-
 //buttons
-searchButton.addEventListener('click', (e) =>{
-    e.preventDefault();
-    input.value  = '';
+searchButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  searching(input, hThree);
+  if (input.value === ''){
+      alert('Place putting a valid search input');
+  }
+  input.value = "";
 });
 
 //input value
@@ -68,8 +66,6 @@ input.addEventListener('keyup', (event)=>{
     //i have learn
     for(var j =0; j<hThree.length; j++){
         if(hThree[j].textContent.toLowerCase().includes(target.toLowerCase())){
-            hThree[j].style.display = 'block';
-            list[j].style.display = "block";
             student_list.push(hThree[j]);
         }else{
             hThree[j].style.display = 'none';
@@ -80,9 +76,3 @@ input.addEventListener('keyup', (event)=>{
     showPage(student_list, 1);
     
 });
-
- /**
-  * add an eventListener for whenever a search is done
-  **/
-
- 
