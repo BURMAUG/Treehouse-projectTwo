@@ -75,6 +75,7 @@ input.addEventListener('keyup', (event)=>{
 });
 
 
+
  /**
   * add an eventListener for whenever a search is done
   **/
