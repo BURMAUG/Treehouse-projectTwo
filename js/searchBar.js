@@ -76,6 +76,8 @@ input.addEventListener('keyup', (event)=>{
             list[j].style.display = 'none';
         }
     }
+    appendPageLinks(student_list);
+    showPage(student_list, 1);
     
 });
 
