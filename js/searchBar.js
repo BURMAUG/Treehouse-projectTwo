@@ -43,7 +43,8 @@ function searching(searchInput, names){
             names[i].style.display = 'none';
             list[i].style.display = 'none';
         }
-    };
+    }
+    
 
 }
 
@@ -71,7 +72,8 @@ input.addEventListener('keyup', (event)=>{
             list[j].style.display = 'none';
         }
     }
-})
+});
+
 
  /**
   * add an eventListener for whenever a search is done
