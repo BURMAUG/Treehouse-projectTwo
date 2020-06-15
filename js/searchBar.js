@@ -47,6 +47,7 @@ function searching(searchInput, names){
         }
     }
     showPage(student_list,1);
+    appendPageLinks(student_list)
 }
 
 
