@@ -10,11 +10,11 @@ searchDiv.className = 'student-search';
 const input = document.createElement('input');
 input.placeholder = 'Search';
 //create a button
-const button = document.createElement('button');
-button.innerHTML = 'Submit';
+const searchButton = document.createElement('button');
+searchButton.innerHTML = 'Search';
 //appending
 searchDiv.appendChild(input);
-searchDiv.appendChild(button);
+searchDiv.appendChild(searchButton);
 parent.appendChild(searchDiv);
 
 
@@ -31,7 +31,7 @@ parent.appendChild(searchDiv);
 const hThree = document.getElementsByTagName('h3');
 console.log(hThree);
 let i =0;
-const list = document.getElementsByClassName('student-item')
+const list = document.getElementsByClassName('student-item cf');
 function searching(searchInput, names){
     for (i; i<names.length; i++){
         names[i].className = '';
@@ -39,18 +39,19 @@ function searching(searchInput, names){
             names[i].className = 'match';
             names[i].style.display = 'block';
             list[i].style.display = 'block';
+            student_list.push(names[i]);
+            student_list[i].style.display = 'block';
         }else{
             names[i].style.display = 'none';
             list[i].style.display = 'none';
         }
     }
-    
-
+    showPage(student_list,1);
 }
 
 
 //buttons
-button.addEventListener('click', (e) =>{
+searchButton.addEventListener('click', (e) =>{
     e.preventDefault();
     input.value  = '';
 });
@@ -58,7 +59,8 @@ button.addEventListener('click', (e) =>{
 //input value
 input.addEventListener('keyup', (event)=>{
     var target = event.target.value;
-    // console.log(target);
+    var student_list = [];
+    //console.log(target);
 
     //loop throught the name and the check
     //like to check if the target value is in any of the name 
@@ -67,14 +69,14 @@ input.addEventListener('keyup', (event)=>{
         if(hThree[j].textContent.toLowerCase().includes(target.toLowerCase())){
             hThree[j].style.display = 'block';
             list[j].style.display = "block";
+            student_list.push(hThree[j]);
         }else{
             hThree[j].style.display = 'none';
             list[j].style.display = 'none';
         }
     }
+    
 });
-
-
 
  /**
   * add an eventListener for whenever a search is done
