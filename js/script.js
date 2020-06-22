@@ -25,7 +25,7 @@ function showPage(list, page){
          list[i].style.display = 'none'; //else don't display em
       }
    }
-}
+};
 
 
 

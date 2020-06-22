@@ -1,4 +1,5 @@
-//SEARCH BAR
+                  
+                  //SEARCH BAR
 //Get the student
 const h2 = document.querySelector("h2").parentNode;
 //search div
@@ -14,7 +15,6 @@ searchButton.innerHTML = "Search";
 //appending
 searchDiv.appendChild(input);
 searchDiv.appendChild(searchButton);
-
 
 //lets get the collection of h3 content
 const hThree = document.getElementsByTagName('h3');
@@ -53,8 +53,8 @@ searchButton.addEventListener("click", (e) => {
   }
   searching(input, hThree);//searching for the intended person
 
-  showPage(student_list, 1);//showing the page 
-  appendPageLinks(student_list);//appending how many paginations needed
+  //showPage(student_list, 1);//showing the page 
+  //appendPageLinks(student_list);//appending how many paginations needed
   input.value = ''; //changing the search input space to nothing.
 });
 
@@ -77,10 +77,10 @@ input.addEventListener('keyup', (event)=>{
             list[j].style.display = 'none';
         }
     }
-    // appendPageLinks(student_list);
-    // showPage(student_list, 1);
+    //  appendPageLinks(student_list);
+    //  showPage(student_list, 1);
 
 });
- 
-appendPageLinks(student_list);
+
 showPage(student_list, 1);
+appendPageLinks(student_list);
