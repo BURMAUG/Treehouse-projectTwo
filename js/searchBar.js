@@ -1,4 +1,4 @@
-                  
+
                   //SEARCH BAR
 //Get the student
 const h2 = document.querySelector("h2").parentNode;
@@ -23,64 +23,49 @@ var i = 0;
 var student_list = [];
 
 function searching(searchInput, names) {
+  //make a list of returned values
+  var listing = [];
   for (i; i < names.length; i++) {
     names[i].className = "";
-    if (
-      searchInput.value.length !== 0 &&
-      searchInput.value
-        .toLowerCase()
-        .includes(names[i].textContent.toLowerCase())
-    ) {
-      names[i].className = "match";
-      names[i].style.display = "block";
-      list[i].style.display = "block";
-      student_list.push(names[i]);
-      student_list[i].style.display = "block";
-    } else {
+    if (names[i].textContent.toLowerCase().indexOf(searchInput.value.toLowerCase())>-1)
+     {
+       listing.push(names[i]);
+       names[i].className = "match";
+       names[i].style.display = "";
+       list[i].style.display = "";
+       //student_list.push(names[i]);
+       //student_list[i].style.display = "block";
+     } else {
       names[i].style.display = "none";
       list[i].style.display = "none";
     }
   }
+  showPage(listing,1); // works well
+  appendPageLinks(listing); //works well
+  //return listing;
 };
 
 //buttons
-searchButton.addEventListener("click", (e) => {
+searchButton.addEventListener('click', (e) => {
   e.preventDefault();
-  //searching(input.value, hThree);
-  console.log(e.target.textContent);
   if (input.value === ''){
       alert('Place putting a valid search input');
-  }
+  };
   searching(input, hThree);//searching for the intended person
-
-  //showPage(student_list, 1);//showing the page 
-  //appendPageLinks(student_list);//appending how many paginations needed
   input.value = ''; //changing the search input space to nothing.
-});
+})
 
 
 
-//input value
-input.addEventListener('keyup', (event)=>{
-    var target = event.target.value;
-    var student_list = [];
-    //console.log(target);
 
-    //loop throught the name and the check
-    //like to check if the target value is in any of the name
-    //i have learn
-    for(var j =0; j<hThree.length; j++){
-        if(hThree[j].textContent.toLowerCase().includes(target.toLowerCase())){
-            student_list.push(hThree[j]);
-        }else{
-            hThree[j].style.display = 'none';
-            list[j].style.display = 'none';
-        }
-    }
-    //  appendPageLinks(student_list);
-    //  showPage(student_list, 1);
 
-});
+let timer = null;
+input.addEventListener('keyup', (e)=> {
+  var target = e.target;
+  clearTimeout(timer);
 
-showPage(student_list, 1);
-appendPageLinks(student_list);
+  timer = setTimeout( function () {
+    searching(target, hThree)
+  }, 500);
+
+})
